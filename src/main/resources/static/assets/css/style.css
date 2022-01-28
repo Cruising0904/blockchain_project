@@ -1,0 +1,170 @@
+@font-face {
+    font-family: 'CookieRunOTF-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    z-index: 9;
+    font-family: 'CookieRun-Regular';
+    box-sizing: border-box;
+    /* text-decoration: none; */
+    list-style-type: none;
+    /* --bg-color: #303030; */
+    --bg-color: teal;
+
+    --nav-color: teal;
+    --second-color: #303030;
+    --third-color: #FDF9F7;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.container {
+    /* position: absolute; */
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+    background-size:  contain;
+    
+}
+.bg {
+    position: absolute;
+    left: 10vw;
+    /* right: 15%; */
+    width: 80%;
+    height: 100vh;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ),url('/assets/imgs/bicycle/bicycle1.jpg');
+    background-size: cover;    
+    z-index: 1;
+}
+.bg1 {
+    position: relative;
+    left: 10vw;
+    /* right: 15%; */
+    width: 80%;
+    height: 100vh;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ),url('/assets/imgs/bicycle/bicycle_incicy.jpg');
+    background-size: cover;    
+    z-index: 1;
+}
+.bg2 {
+    position: absolute;
+    left: 10vw;
+    /* right: 15%; */
+    width: 80%;
+    height: 100vh;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ),url('/assets/imgs/bicycle/illust.jpg');
+    background-size: cover;    
+    z-index: 1;
+}
+
+header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: stretch;
+    background-color: transparent;
+    color: var(--third-color);
+    height: 76px;
+    /* border: 1px solid #7E7C78; */
+    z-index: 9099;
+}
+.headerscroll{
+    background-color: var(--nav-color);
+}
+.logo {
+    font-family: 'CookieRunOTF-Bold';
+    font-size: 3rem;
+    float: left;
+    width: auto;
+    padding-left: 10%;
+    cursor: cell;
+}
+
+.menu {
+    margin-right: 10%;
+}
+
+ul {
+    /* vertical-align: baseline; */
+}
+
+li {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    color: var(--third-color);
+    font-size: 25px;
+    margin: 12px;
+}
+
+a{
+    color:inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    /* color: blue; */
+    text-decoration: none;
+}
+
+li > button{
+    border: 0;
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    font-size:inherit;
+    color: inherit;
+    background: transparent;
+}
+
+li>button:hover{
+  /* 인풋태그 보이게? */
+  cursor: pointer;
+
+}
+.login_frm{
+    visibility: hidden;
+}
+.show{
+    visibility: visible;
+    transition-duration: .5s;
+}
+
+
+.content{
+    overflow: hidden;
+    position:absolute;
+    left: 40%;
+    top: 40%;
+    transform: skew(-15deg, -15deg);
+}
+
+.main_quote{
+    font-size: 5rem;
+    color:var(--third-color);
+}

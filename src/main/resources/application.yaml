@@ -1,0 +1,12 @@
+
+spring:
+    datasource:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: test
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

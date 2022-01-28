@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head th:insert="fragments/header :: head('Riding a bicycle')"></head>
+
+<body onscroll="scroll_chk()">
+    <div class="container">
+        <section class="bg"></section>
+        <header>
+            <a class="logo" href="/" th:href="@{/}">자전거를 타자</a>
+            <div class="menu">
+                <ul>
+                    <!-- <li><a href="#">Intro</a></li> -->
+                    <li><a th:href="@{/list}">Anouncement</a></li>
+                    <li><a onclick="ajax(this);">Report</a></li>
+                    <li><button class="login-button" onclick="login_from_show()">Login</button></li>
+                    <li>
+                    <div action="" class="login_frm">
+                        <input type="text" name="id" id="id">
+                        <input type="password" name="password" id="password">
+                        <button onclick="frm_check()">로그인</button>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </header>
+        <div class="content">
+            <span  class="main_quote">자전거가 필요하신가요?</span>
+        </div>
+    </div>
+    <div th:insert="/fragments/introduce.html :: bg"></div>
+   
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
