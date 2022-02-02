@@ -5,8 +5,15 @@ spring:
             host: localhost
             port: 27017
             database: test
+
+
+server:
+    port: 8083
+
 logging:
   level:
     org:
       springframework:
         security: DEBUG
+        
+

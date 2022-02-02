@@ -11,9 +11,28 @@ function frm_check() {
         alert('invalid')
         return false;
     }
-    alert(id.value)
-    // todo ajax fetch
-
+    // alert(id.value)
+    // todo sending via thymeleaf for secure reason
+    ajax('/login', {"phoneNum":id.value, "password":password.value});
+}
+async function ajax(url='', data={}){
+  console.log(url)
+  console.log(data)
+  
+    const response = await fetch(url, {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error)=> {
+    console.error('Error:', error);
+  })
 }
 
 function scroll_chk(){
@@ -28,14 +47,3 @@ function scroll_chk(){
 console.log(scrollPosition);
 }
 
-function ajax(){
-    let text = document.querySelector('.main_quote')
-    text.style.opacity = 0.3
-    
-    fetch('/list')
-  .then((response) => console.log("response:", response))
-  
-  .catch((error) => console.log("error:", error))
-  
-  ;
-}

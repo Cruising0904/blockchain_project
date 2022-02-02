@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments/header :: head('Riding a bicycle')"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/assets/css/style.css" th:href="@{/assets/css/style.css}" />
+    <!-- <title th:text="${title}"></title> -->
+    <title>Riding a Bicycle</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+</head>
 
 <body onscroll="scroll_chk()">
     <div class="container">
@@ -11,25 +19,38 @@
             <div class="menu">
                 <ul>
                     <!-- <li><a href="#">Intro</a></li> -->
-                    <li><a th:href="@{/list}">Anouncement</a></li>
+                    <li><a href="/list" th:href="@{/list}">Anouncement</a></li>
                     <li><a onclick="ajax(this);">Report</a></li>
                     <li><button class="login-button" onclick="login_from_show()">Login</button></li>
                     <li>
-                    <div action="" class="login_frm">
-                        <input type="text" name="id" id="id">
-                        <input type="password" name="password" id="password">
-                        <button onclick="frm_check()">로그인</button>
-                    </div>
-                </li>
+                        <div action="" class="login_frm">
+                            <input type="text" name="id" id="id">
+                            <input type="password" name="password" id="password">
+                            <button onclick="frm_check()">로그인</button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </header>
+        <div th:if="@{/list}" th:replace="fragments/board :: notice" >...</div>
+
+
         <div class="content">
-            <span  class="main_quote">자전거가 필요하신가요?</span>
+            <span class="main_quote">자전거가 필요하신가요?</span>
         </div>
     </div>
-    <div th:insert="/fragments/introduce.html :: bg"></div>
-   
+    <!-- <div th:insert="/fragments/introduce.html :: bg"></div> -->
+    <div class="container2">
+        <section class="bg1">
+            <span class="main_quote">대중교통타기 애매한 거리</span>
+        </section>
+    </div>
+    <div class="container3">
+        <section class="bg2">
+            <span class="main_quote">언제 어디서든 자전거를 즐기세요</span>
+        </section>
+    </div>
+
     <script src="./js/index.js"></script>
 </body>
 
