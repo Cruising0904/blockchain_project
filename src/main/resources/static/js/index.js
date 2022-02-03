@@ -26,13 +26,13 @@ async function ajax(url='', data={}){
     },
     body: JSON.stringify(data)
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error)=> {
-    console.error('Error:', error);
-  })
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log('Success:', data);
+  // })
+  // .catch((error)=> {
+  //   console.error('Error:', error);
+  // })
 }
 
 function scroll_chk(){

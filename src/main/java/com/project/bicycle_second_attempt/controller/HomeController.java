@@ -21,30 +21,35 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("list")
-    public String list() {
-        return "list";
-    }
+    // @GetMapping("/list")
+    // // @ResponseBody
+    // public String list(
+
+    // ) {
+    //     // System.out.println(uService.findUsers());
+    //     uService.findUsers();
+
+    //     return "index";
+    // }
 
     @PostMapping("/login")
     @ResponseBody
-    public String loginData(
-            @RequestBody User user
-            // @RequestParam String id,
-            // @RequestParam String email,
-            // @RequestBody String phoneNumber,
-            // @RequestBody String password,
-            // Model model
-            ) {
-        // System.out.println("post 호출");
-        // System.out.println("user = "+ user);
-        // System.out.println("phoneNum = "+ user.getPhoneNum());
-        // System.out.println("password = "+ user.getPassword());
-        // System.out.println("phoneNumber : " + phoneNumber);
-        // System.out.println("password : " + password);
-        // System.out.println(id);
+    public void find(
+            @RequestBody User user) {
+        uService.findUser(user.getPhoneNum(), user.getPassword());
+        // return "index";
+    }
+    @PostMapping("/register")
+    @ResponseBody
+    public void loginData(
+            @RequestBody User user) {
         uService.insetUser(user.getPhoneNum(), user.getPassword());
-        return "index";
+        // return "index";
+    }
+    @PostMapping("/list")
+    @ResponseBody
+    public void list() {
+        uService.findUsers();
     }
 
 }
