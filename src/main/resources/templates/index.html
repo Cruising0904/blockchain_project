@@ -15,41 +15,44 @@
     <div class="container">
         <section class="bg"></section>
         <header>
-            <a class="logo" href="/" th:href="@{/}">자전거를 타자</a>
+            <a class="logo active" onclick="main()">자전거를 타자</a>
             <div class="menu">
                 <ul>
-                    <!-- <li><a href="#">Intro</a></li> -->
-                    <li><a href="/list" th:href="@{/list}">Anouncement</a></li>
-                    <li><a onclick="ajax('/list');">Report</a></li>
-                    <li><button class="login-button" onclick="login_from_show()">Login</button></li>
-                    <li>
-                        <div action="" class="login_frm">
-                            <input type="text" name="id" id="id">
-                            <input type="password" name="password" id="password">
-                            <button onclick="frm_check()">로그인</button>
-                        </div>
+
+                    <li class="notice"><a onclick="getNotice();">Anouncement</a></li>
+                    <li class="report"><a onclick="board();">Report</a></li>
+                    <li th:if="${session.id}" class="loggedin_user">
+                        <div>[[${session.id}]]님 환영합니다.</div>
+                        <button onclick="logout()">로그아웃</button>
+                    </li>
+                    <li th:if="${session.id} == null"><button class="login-button"
+                            onclick="login_from_show()">Login</button></li>
+                    <li class="login_frm">
+                        <input type="text" name="id" id="id">
+                        <input type="password" name="password" id="password">
+                        <button onclick="frm_check()">로그인</button>
                     </li>
                 </ul>
             </div>
         </header>
-        <div th:if="@{/list}" th:replace="fragments/board :: notice" >...</div>
-
-
+        <table class="board">
+            <caption class="board_title"></caption>
+            <thead>
+                <th>내용</th>
+                <th>날짜</th>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
         <div class="content">
-            <span class="main_quote">자전거가 필요하신가요?</span>
+            <span class="main_quote">자전거가 필요하신가요?[[${list}]]</span>
         </div>
     </div>
     <!-- <div th:insert="/fragments/introduce.html :: bg"></div> -->
-    <div class="container2">
-        <section class="bg1">
-            <span class="main_quote">대중교통타기 애매한 거리</span>
-        </section>
-    </div>
-    <div class="container3">
-        <section class="bg2">
-            <span class="main_quote">언제 어디서든 자전거를 즐기세요</span>
-        </section>
-    </div>
+    <div th:replace="${session.id} ? ~{fragment::main} : ~{}"></div>
+
+
 
     <script src="./js/index.js"></script>
 </body>

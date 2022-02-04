@@ -1,6 +1,10 @@
 package com.project.bicycle_second_attempt.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.project.bicycle_second_attempt.dto.User;
@@ -15,24 +19,25 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private MongoTemplate mongoTemplate;
+    Date date = Calendar.getInstance().getTime();  
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+    String now = dateFormat.format(date);  
 
-    // String id, String email,
-    public User insetUser(String phoneNum, String password) {
+    public User insetUser(String id, String password) {
         User user = new User();
-        user.setPhoneNum(phoneNum);
+        user.setId(id);
         user.setPassword(password);
+        user.setJoinAt(now);
         System.out.println("insertUser");
-        // mongoTemplate.findById("ph");
         return mongoTemplate.insert(user);
     }
 
-    public void findUser(String phoneNum, String password) {
-        User user = new User();
-        user.setPhoneNum(phoneNum);
-        user.setPassword(password);
-        Query query = new Query().addCriteria(Criteria.where("phoneNum").is(phoneNum));
-        System.out.println(mongoTemplate.find(query, User.class));
-
+    public List<User> findUser(String id, String password) {
+        List<User> result = new ArrayList<>();
+        Query query = new Query().addCriteria(Criteria.where("id").is(id));
+        result = mongoTemplate.find(query, User.class);
+        
+        return result;
     }
 
     public void findUsers() {
