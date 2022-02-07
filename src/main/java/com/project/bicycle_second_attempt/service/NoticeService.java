@@ -27,11 +27,11 @@ public class NoticeService {
         List<Board> result = new ArrayList<>();
         Query query = new Query().addCriteria(Criteria.where("isNotice").is(true));
         result = mongoTemplate.find(query, Board.class);
-        System.out.println("getBoards!");
-        System.out.println(result);
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+        // System.out.println("getBoards!");
+        // System.out.println(result);
+        // for (int i = 0; i < result.size(); i++) {
+        //     System.out.println(result.get(i));
+        // }
         return result;
     }
 }

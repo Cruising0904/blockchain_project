@@ -1,8 +1,11 @@
 package com.project.bicycle_second_attempt.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.project.bicycle_second_attempt.dto.Board;
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -39,31 +41,36 @@ public class HomeController {
 
     @PostMapping("/login")
     @ResponseBody
-    public void login(
+    public Map<String,String> login(
             @RequestBody User user,
             Model model,
             HttpSession session) {
-        List<User> result = uService.findUser(user.getId(), user.getPassword());
-        if (result.size() <= 0) {
-            System.out.println("go to register");
-        } else {
-            if (user.password.equals(result.get(0).password)) {
-                session.setAttribute("id", user.id);
-                System.out.println("logined");
 
+        List<User> userData = uService.findUser(user.getUserid());
+        Map<String, String> data = new HashMap<String, String>();
+        System.out.println(userData);
+        if (userData.size() <= 0) {
+            System.out.println("register id: "+userData);
+           data.put("data", "no");
+        } else {
+            if (user.getPassword().equals(userData.get(0).getPassword())) {
+                session.setAttribute("id", user.getUserid());
+                System.out.println("logined"+userData);
+                data.put("data", "welcome");
             } else {
-                System.out.println("not matched!" + result.get(0).password);
+                System.out.println("not matched! : pwd" + userData.get(0).getPassword());
+                data.put("data", "wrong");
             }
         }
-        // return result;
+        return data;
     }
 
     @PostMapping("/register")
-    @ResponseBody
-    public void loginData(
-            @RequestBody User user) {
-        uService.insetUser(user.getId(), user.getPassword());
-        // return "index";
+    public String loginData(@ModelAttribute User user) {
+        List<User> userData = uService.findUser(user.getUserid());
+       
+
+        return "index";
     }
 
     @PostMapping("/list")

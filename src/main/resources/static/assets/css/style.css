@@ -15,7 +15,7 @@
 * {
     margin: 0;
     padding: 0;
-    z-index: 9;
+    z-index: 2;
     font-family: 'CookieRun-Regular';
     box-sizing: border-box;
     /* text-decoration: none; */
@@ -74,7 +74,7 @@ body {
     z-index: 1;
 }
 
-header {
+.main_header{
     position: fixed;
     top: 0px;
     width: 100%;
@@ -88,12 +88,13 @@ header {
     color: var(--third-color);
     height: 76px;
     /* border: 1px solid #7E7C78; */
-    z-index: 9099;
+    z-index: 9;
 }
 
 .headerscroll {
     background-color: var(--nav-color);
 }
+
 
 .logo {
     font-family: 'CookieRunOTF-Bold';
@@ -154,6 +155,15 @@ a:hover {
     text-decoration: none;
 }
 
+ul {
+    align-items: center;
+    /* left: 30%; */
+}
+
+ul:last-child {
+    padding-right: 20px;
+}
+
 li>button {
     border: 0;
     display: inline-block;
@@ -165,14 +175,19 @@ li>button {
     background: transparent;
 }
 
-li>button:hover {
+button:hover {
     /* 인풋태그 보이게? */
     cursor: pointer;
 
 }
 
 .login_frm {
+    width: 500px;
     visibility: hidden;
+}
+
+#id, #password {
+    width: 130px;
 }
 
 .show {
@@ -243,4 +258,111 @@ td {
 .loggedin_user>button {
     position: relative;
     left: 200px;
+}
+
+#register {
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    font-size: 25px;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal_body {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 700px;
+    padding: 40px;
+    text-align: center;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transform: translateX(-50%) translateY(-50%);
+    overflow-y: scroll;
+}
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap'); */
+/*헤더 애니메이션 부여*/
+@keyframes headerMove{
+      0% {transform: translate(0px); }
+      50% {transform: translate(400px); }
+      100% {transform: translate(0,0);}
+}
+/*헤더 이미지*/
+.modal_header img{
+   width : 500px;
+   height: 130px;
+   animation-name: headerMove;
+   animation-duration: 3s;
+   animation-iteration-count: infinite; 
+}
+/*헤더의 부제목*/
+.modal_header p{
+   font-size : 2rem;
+   /* font-family: 'Gowun Dodum', sans-serif; */
+   margin-top : 50px;
+   margin-bottom: 2%;
+
+}
+/*벤치마킹 - 박스 디자인*/
+.box {
+   margin : 0px auto;
+   display: block;
+   width: 60%;
+   height: 51px;
+   padding-top: 10px;
+   padding-right: 110px;
+   padding-bottom: 10px;
+   padding-left: 14px;
+   background: #fff;
+   box-sizing: border-box;
+   vertical-align: top;
+}
+/*벤치마킹 - input 디자인*/
+.int {
+   display: block;
+   position: relative;
+   width: 100%;
+   height: 29px;
+   border: solid 1px #dadada;
+   /* padding-right: 25px; */
+   line-height: 29px;
+   border: none;
+   background: #fff;
+   font-size: 15px;
+   box-sizing: border-box;
+   z-index: 10;
+}
+
+/* .check{
+    width: 100%;
+} */
+
+.close{
+    display: inline-block;*display:inline;
+    text-align: right;
+}
+.close:after{
+ display: inline-block;   
+ content: "\00d7";
+ font-size: 20pt;
+ color: black;
 }

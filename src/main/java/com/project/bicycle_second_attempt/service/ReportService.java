@@ -22,13 +22,13 @@ public class ReportService {
     String now = dateFormat.format(date);
 
     public List<Board> getBoards(){
-        System.out.println("getBoards!");
+        // System.out.println("getBoards!");
 
         List<Board> result = new ArrayList<>();
         result = mongoTemplate.findAll(Board.class);
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+        // for (int i = 0; i < result.size(); i++) {
+        //     System.out.println(result.get(i));
+        // }
         return result;
     }
 }

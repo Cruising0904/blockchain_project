@@ -23,30 +23,28 @@ public class UserService {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
     String now = dateFormat.format(date);  
 
-    public User insetUser(String id, String password) {
-        User user = new User();
-        user.setId(id);
-        user.setPassword(password);
+
+    public void insertUser(User user){
         user.setJoinAt(now);
-        System.out.println("insertUser");
-        return mongoTemplate.insert(user);
+        mongoTemplate.insert(user);
     }
 
-    public List<User> findUser(String id, String password) {
+    public List<User> findUser(String id) {
         List<User> result = new ArrayList<>();
-        Query query = new Query().addCriteria(Criteria.where("id").is(id));
+        Query query = new Query().addCriteria(Criteria.where("userid").is(id));
+        System.out.println("query:"+query);
         result = mongoTemplate.find(query, User.class);
         
         return result;
     }
 
     public void findUsers() {
-        List<User> result = new ArrayList<>();
-        result = mongoTemplate.findAll(User.class);
-        System.out.println("findUsers!");
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+        // List<User> result = new ArrayList<>();
+        mongoTemplate.findAll(User.class);
+        // System.out.println("findUsers!");
+        // for (int i = 0; i < result.size(); i++) {
+        //     System.out.println(result.get(i));
+        // }
     }
 
 }

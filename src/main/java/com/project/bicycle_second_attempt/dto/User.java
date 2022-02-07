@@ -9,11 +9,18 @@ import lombok.Data;
 @Document("users")
 public class User{
  
-    @Id
-    public String id;
-    // public String email;
-    public String phoneNum;
-    public String password;
+
+    private String userid;
+    // private String email;
+    private String password;
+    private String username;
+    private String phoneNum;
+    private String road;
+    private String jibeon;
+    private String detail_ad;
+    private String email;
+    private String email2;
+
     private String joinAt;
 
 
