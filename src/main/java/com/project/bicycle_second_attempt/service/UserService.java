@@ -29,9 +29,9 @@ public class UserService {
         mongoTemplate.insert(user);
     }
 
-    public List<User> findUser(String id) {
+    public List<User> findUser(String userid) {
         List<User> result = new ArrayList<>();
-        Query query = new Query().addCriteria(Criteria.where("userid").is(id));
+        Query query = new Query().addCriteria(Criteria.where("userid").is(userid));
         System.out.println("query:"+query);
         result = mongoTemplate.find(query, User.class);
         

@@ -41,7 +41,7 @@ public class HomeController {
 
     @PostMapping("/login")
     @ResponseBody
-    public Map<String,String> login(
+    public Map<String, String> login(
             @RequestBody User user,
             Model model,
             HttpSession session) {
@@ -50,12 +50,12 @@ public class HomeController {
         Map<String, String> data = new HashMap<String, String>();
         System.out.println(userData);
         if (userData.size() <= 0) {
-            System.out.println("register id: "+userData);
-           data.put("data", "no");
+            System.out.println("register id: " + userData);
+            data.put("data", "no");
         } else {
             if (user.getPassword().equals(userData.get(0).getPassword())) {
                 session.setAttribute("id", user.getUserid());
-                System.out.println("logined"+userData);
+                System.out.println("logined" + userData);
                 data.put("data", "welcome");
             } else {
                 System.out.println("not matched! : pwd" + userData.get(0).getPassword());
@@ -67,8 +67,12 @@ public class HomeController {
 
     @PostMapping("/register")
     public String loginData(@ModelAttribute User user) {
-        List<User> userData = uService.findUser(user.getUserid());
-       
+        // List<User> userData = uService.findUser(user.getUserid());
+        // if(userData.size()<=0){
+        uService.insertUser(user);
+        // }else{
+        // return "already";
+        // }
 
         return "index";
     }
@@ -109,4 +113,19 @@ public class HomeController {
         return result;
     }
 
+    @ResponseBody
+    @PostMapping("/idcheck")
+    public Map<String, String> idcheck(@RequestBody User user) {
+        System.out.println(user.getUserid());
+        List<User> userData = uService.findUser(user.getUserid());
+        Map<String, String> data = new HashMap<String, String>();
+        System.out.println(userData);
+        if (userData.size() <= 0) {
+            System.out.println("check id: " + userData);
+            data.put("data", "ok");
+        } else {
+            data.put("data", "already");
+        }
+        return data;
+    }
 }

@@ -28,6 +28,7 @@ function frm_check() {
     .then(location.reload())
 }
 
+
 let responseData
 async function ajax(url = '', obj = {}) {
   // console.log(url)
@@ -308,7 +309,29 @@ window.onload = function() {
 
   }//window
 
-
+  function idcheck(){
+    let confirmId= document.querySelector('#userid')
+    var idLimit = /^[a-zA-Z0-9-_]{5,20}$/; //정규식 5~20자 (a~z, A~Z, 0~9, -, _만 입력가능)
+    if (!idLimit.test(confirmId.value)) {
+      document.getElementById('idError').innerHTML = " 5~20자의 영문 소대문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
+      confirmId.focus(); // 포커스 이동
+      return false;
+   }
+    console.log(confirmId.value)
+    ajax('/idcheck', {"userid":confirmId.value})
+    
+    .then(()=> {
+      if(responseData.data == "ok"){
+        alert('사용가능한 아이디입니다')
+        confirmId.focus
+      }else if(responseData.data == "already"){
+        alert('이미 존재하는 아이디입니다.')
+        //todo focus 
+        confirmId.focus
+      }
+    })
+  }
+  
 
   function sample4_execDaumPostcode() {
     new daum.Postcode(
